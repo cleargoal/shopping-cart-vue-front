@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import App from './App.vue';
+import App from './app/App.vue';
 
 const routes = [
     {
@@ -10,12 +10,12 @@ const routes = [
             {
                 path: '/',
                 name: 'welcome',
-                component: () => import('./components/HelloWorld.vue')
+                component: () => import('./components/products/ProductsList.vue')
             },
             {
                 path: '/cart',
                 name: 'cart',
-                component: () => import('./components/cart/Cart.vue')
+                component: () => import('./components/cart/ShoppingCart.vue')
             },
             {
                 path: "/products",
