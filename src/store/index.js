@@ -3,8 +3,8 @@ import rootMutations from "./mutations";
 import rootActions from "./actions";
 import rootGetters from "./getters";
 import shoppingCart from "./cart/index";
-import categories from "@/store/categories";
-import discounts from "@/store/discounts";
+import categories from "./categories";
+import discounts from "./discounts";
 
 const store = createStore({
     modules: {
