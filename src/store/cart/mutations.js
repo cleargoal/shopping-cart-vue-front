@@ -1,5 +1,5 @@
-import {updateLocalStorage} from '@/utils/functions';
-import calc from "@/utils/discount_calc";
+import {updateLocalStorage} from '../../utils/functions';
+import calc from "../../utils/discount_calc";
 
 export default {
     addToCart(state, product) {
