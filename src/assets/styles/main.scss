@@ -69,12 +69,6 @@ $transitionDuration:.2s;
 }
 
 .product-badge {
-  border-radius: var(--border-radius);
-  padding: .25em .5rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: .3px;
 
   &.status-instock {
     background: #C8E6C9;
@@ -93,12 +87,6 @@ $transitionDuration:.2s;
 }
 
 .order-badge {
-  border-radius: var(--border-radius);
-  padding: .25em .5rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: .3px;
 
   &.order-delivered {
     background: #C8E6C9;
