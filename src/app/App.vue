@@ -4,6 +4,7 @@
         @click="onWrapperClick"
     >
         <AppTopBar @menu-toggle="onMenuToggle" />
+
         <div
             class="layout-sidebar"
             @click="onSidebarClick"
@@ -15,7 +16,6 @@
         </div>
 
         <div class="layout-main-container">
-            <Toast />
             <div class="layout-main">
                 <router-view />
             </div>
@@ -28,23 +28,22 @@
                 class="layout-mask p-component-overlay"
             />
         </transition>
+        <TheToast />
     </div>
 </template>
 
 <script>
     import {mapActions, mapGetters} from "vuex";
-    import Toast from "primevue/toast";
     import AppTopBar from "./AppTopbar.vue";
     import AppMenu from "./AppMenu.vue";
     import AppFooter from "./AppFooter.vue";
-    import ApiService from "@/service/ApiService";
+    import ApiService from "../service/ApiService";
 
     export default {
         components: {
             AppTopBar,
             AppMenu,
             AppFooter,
-            Toast,
         },
         emits: ["change-theme"],
         data() {
@@ -180,7 +179,7 @@
                 if (!window.localStorage.getItem("categories")) {
                     await this.getCategoriesFromDb();
                 }
-                this.setCategoriesList(
+                await this.setCategoriesList(
                     JSON.parse(window.localStorage.getItem("categories"))
                 );
             },
@@ -205,5 +204,9 @@
         },
     };
 </script>
+<style lang="scss">
+.layout-content-area {
+    display: flex;
+}
 
-<style lang="scss"></style>
+</style>

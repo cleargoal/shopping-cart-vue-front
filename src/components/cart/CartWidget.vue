@@ -24,10 +24,10 @@
 </template>
 
 <script>
-    import ApiService from "@/service/ApiService";
+    import ApiService from "../../service/ApiService";
     import {mapActions, mapGetters} from "vuex";
-    import ShoppingCart from "@/components/cart/ShoppingCart.vue";
-    import { updateLocalStorage } from  '@/utils/functions';
+    import ShoppingCart from "./ShoppingCart.vue";
+    import { updateLocalStorage } from  '../../utils/functions';
 
     export default {
         name: "CartWidget",

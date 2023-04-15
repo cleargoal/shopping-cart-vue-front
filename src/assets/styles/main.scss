@@ -1,5 +1,5 @@
 @import "primevue/resources/themes/lara-light-teal/theme.css";
-@import "primevue/resources/primevue.min.css";
+//@import "primevue/resources/primevue.min.css";
 @import "primeicons/primeicons.css";
 @tailwind base;
 @tailwind components;
@@ -270,7 +270,7 @@ a {
   flex-direction: column;
   min-height: 100vh;
   justify-content: space-between;
-  padding: 7rem 2rem 2rem 4rem;
+  padding: 3.5rem 2rem 2rem 3rem;
   transition: margin-left $transitionDuration;
 }
 
@@ -359,11 +359,10 @@ a {
       text-decoration: none;
       display: flex;
       align-items: center;
-      color:var(--text-color);
-      transition: color $transitionDuration;
+      color: var(--text-color);
+      transition: color $transitionDuration,  background-color .15s;
       border-radius: $borderRadius;
       padding: .75rem 1rem;
-      transition: background-color .15s;
 
       span {
         margin-left: 0.5rem;

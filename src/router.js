@@ -1,38 +1,31 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router';
 import App from './app/App.vue';
 
 const routes = [
     {
         path: '/',
         name: 'app',
-        component: App,
-        children: [
-            {
-                path: '/',
-                name: 'welcome',
-                component: () => import('./components/products/ProductsList.vue')
-            },
-            {
-                path: '/cart',
-                name: 'cart',
-                component: () => import('./components/cart/ShoppingCart.vue')
-            },
-            {
-                path: "/products",
-                name: "products",
-                component: () => import('./components/products/ProductsList.vue'),
-            },
-            {
-                path: "/set-discount",
-                name: "set-discount",
-                component: () => import('./pages/admin/AdminSetDiscount.vue'),
-            },
-            {
-                path: "/discounts",
-                name: "discounts",
-                component: () => import('./pages/admin/DiscountsList.vue'),
-            },
-        ]
+        component: () => import('./pages/FirstAccess.vue')
+    },
+    {
+        path: '/cart',
+        name: 'cart',
+        component: () => import('./components/cart/ShoppingCart.vue')
+    },
+    {
+        path: "/products",
+        name: "products",
+        component: () => import('./components/products/ProductsList.vue'),
+    },
+    {
+        path: "/set-discount",
+        name: "set-discount",
+        component: () => import('./pages/admin/AdminSetDiscount.vue'),
+    },
+    {
+        path: "/discounts",
+        name: "discounts",
+        component: () => import('./pages/admin/DiscountsList.vue'),
     },
     {
         path: '/login',

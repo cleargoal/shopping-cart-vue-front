@@ -3,9 +3,6 @@
         <div class="col-12">
             <div class="card">
                 <TheToast />
-                <h2 style="text-transform: capitalize;">
-                    {{ categoryHeader }}
-                </h2>
                 <DataView
                     :value="dataviewValue"
                     :layout="layout"
@@ -15,18 +12,23 @@
                     :sort-field="sortField"
                 >
                     <template #header>
-                        <div class="grid grid-nogutter">
-                            <div class="col-6 text-left">
-                                <Dropdown
-                                    v-model="sortKey"
-                                    :options="sortOptions"
-                                    option-label="label"
-                                    placeholder="Sort By Price"
-                                    @change="onSortChange($event)"
-                                />
-                            </div>
-                            <div class="col-6 text-right">
-                                <DataViewLayoutOptions v-model="layout" />
+                        <div class="flex justify-content-between">
+                            <h2 style="text-transform: capitalize;">
+                                {{ categoryHeader }}
+                            </h2>
+                            <div class="grid grid-nogutter col-4">
+                                <div class="col-6 text-left">
+                                    <DropdownList
+                                        v-model="sortKey"
+                                        :options="sortOptions"
+                                        option-label="label"
+                                        placeholder="Sort By:"
+                                        @change="onSortChange($event)"
+                                    />
+                                </div>
+                                <div class="col-6 text-right">
+                                    <DataViewLayoutOptions v-model="layout" />
+                                </div>
                             </div>
                         </div>
                     </template>
@@ -45,7 +47,7 @@
                                     <div class="mb-3">
                                         {{ slotProps.data.description }}
                                     </div>
-                                    <Rating
+                                    <RatingMark
                                         :model-value="slotProps.data.rating"
                                         :readonly="true"
                                         :cancel="false"
@@ -58,7 +60,7 @@
                                 </div>
                                 <div class="flex flex-row md:flex-column justify-content-between w-full md:w-auto align-items-center md:align-items-end mt-5 md:mt-0">
                                     <span class="text-2xl font-semibold mb-2 align-self-center md:align-self-end">${{ normalPrice(slotProps.data.price) }}</span>
-                                    <Button
+                                    <ButtonDefault
                                         icon="pi pi-shopping-cart"
                                         label="Add to Cart"
                                         :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"
@@ -73,41 +75,9 @@
 
                     <template #grid="slotProps">
                         <div class="col-12 md:col-4">
-                            <div class="card m-3 border-1 surface-border">
-                                <div class="flex align-items-center justify-content-between">
-                                    <div class="flex align-items-center">
-                                        <i class="pi pi-tag mr-2" />
-                                        <span class="font-semibold">{{ slotProps.data.category }}</span>
-                                    </div>
-                                    <span :class="'product-badge status-'+slotProps.data.inventoryStatus.toLowerCase()">{{ slotProps.data.inventoryStatus }}</span>
-                                </div>
-                                <div class="text-center">
-                                    <img
-                                        :src="'images/product/' + slotProps.data.image"
-                                        :alt="slotProps.data.name"
-                                        class="w-9 shadow-2 my-3 mx-0"
-                                    >
-                                    <div class="text-2xl font-bold">
-                                        {{ slotProps.data.name }}
-                                    </div>
-                                    <div class="mb-3">
-                                        {{ slotProps.data.description }}
-                                    </div>
-                                    <Rating
-                                        :model-value="slotProps.data.rating"
-                                        :readonly="true"
-                                        :cancel="false"
-                                    />
-                                </div>
-                                <div class="flex align-items-center justify-content-between">
-                                    <span class="text-2xl font-semibold">${{ normalPrice(slotProps.data.price) }}</span>
-                                    <Button
-                                        icon="pi pi-shopping-cart"
-                                        :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"
-                                        @click="addToCart(slotProps.data)"
-                                    />
-                                </div>
-                            </div>
+                            <product-card
+                                :data="slotProps.data"
+                            />
                         </div>
                     </template>
                 </DataView>
@@ -117,10 +87,12 @@
 </template>
 
 <script>
-    import ApiService from "@/service/ApiService";
+    import ApiService from "../../service/ApiService";
     import { mapActions } from 'vuex';
+    import ProductCard from "./ProductCard.vue";
 
     export default {
+        components: {ProductCard},
         data() {
             return {
                 categoryHeader: '',
@@ -130,8 +102,14 @@
                 sortOrder: null,
                 sortField: null,
                 sortOptions: [
-                    {label: 'Price High to Low', value: '!price'},
-                    {label: 'Price Low to High', value: 'price'},
+                    {label: 'Price: High to Low', value: '!price'},
+                    {label: 'Price: Low to High', value: 'price'},
+                    {label: 'Rating: High to Low', value: '!rating'},
+                    {label: 'Rating: Low to High', value: 'rating'},
+                    {label: 'Stock: In stock first', value: 'inventoryStatus'},
+                    {label: 'Stock: Out of stock first', value: '!inventoryStatus'},
+                    {label: 'Name: A - Z', value: 'name'},
+                    {label: 'Name: Z - A', value: '!name'},
                 ]
             }
         },
@@ -178,5 +156,19 @@
 </script>
 
 <style scoped lang="scss">
-@import '../../assets/scss/badges.scss';
+.product-item {
+    .product-item-content {
+        border: 1px solid var(--surface-d);
+        border-radius: 3px;
+        margin: 0.3rem;
+        text-align: center;
+        padding: 2rem 0;
+    }
+
+    .product-image {
+        width: 50%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+}
+
 </style>

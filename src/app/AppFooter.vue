@@ -16,13 +16,13 @@
         name: "AppFooter",
         methods: {
             footerImage() {
-                return 'images/whole-europe.svg';
+                return '/images/whole-europe.svg';
             }
         }
     }
 </script>
 
-<style scoped>
+<style>
 .layout-footer {
     transition: margin-left $transitionDuration;
     height: 4rem;

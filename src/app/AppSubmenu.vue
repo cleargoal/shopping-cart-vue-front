@@ -11,7 +11,7 @@
             >
                 <template v-if="root">
                     <div
-                        :class="layout-menuitem-root-text"
+                        class="layout-menuitem-root-text"
                         aria-label="item.label"
                     >
                         {{ item.label }}
@@ -34,7 +34,7 @@
                         @click="onMenuItemClick($event,item,i)"
                     >
                         <i :class="item.icon" />
-                        <span>{{ item.label }}</span>
+                        <span style="font-size: large;">{{ item.label }}</span>
                         <i
                             v-if="item.items"
                             class="pi pi-fw pi-angle-down menuitem-toggle-icon"

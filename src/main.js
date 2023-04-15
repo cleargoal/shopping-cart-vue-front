@@ -16,7 +16,7 @@ import Badge from "primevue/badge";
 import Dropdown from "primevue/dropdown";
 import DataViewLayoutOptions from "primevue/dataviewlayoutoptions";
 import Rating from "primevue/rating";
-import Button from "primevue/button";
+import Button from "./components/ButtonDefault.vue";
 import DataView from "./components/products/DataView.vue";
 
 const app = createApp(App);
