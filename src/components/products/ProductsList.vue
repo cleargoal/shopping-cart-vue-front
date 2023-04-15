@@ -75,7 +75,7 @@
 
                     <template #grid="slotProps">
                         <div class="col-12 md:col-4">
-                            <product-card
+                            <product-card-grid
                                 :data="slotProps.data"
                             />
                         </div>
@@ -89,10 +89,10 @@
 <script>
     import ApiService from "../../service/ApiService";
     import { mapActions } from 'vuex';
-    import ProductCard from "./ProductCard.vue";
+    import ProductCardGrid from "./ProductCardGrid.vue";
 
     export default {
-        components: {ProductCard},
+        components: {ProductCardGrid},
         data() {
             return {
                 categoryHeader: '',
