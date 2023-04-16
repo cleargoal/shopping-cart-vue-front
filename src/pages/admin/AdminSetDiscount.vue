@@ -4,7 +4,6 @@
             <div class="card">
                 <h2>Set Discount</h2>
                 <h6 class="p-3 border rounded-xl border-orange-200">
-                    <!-- TODO rewrite message below to fit real conditions -->
                     Attention! You can set 1 rule in 1 record, but all rules you had set acting together in their frames as
                     categories, products and dates.
                 </h6>
