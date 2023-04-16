@@ -27,3 +27,11 @@ npm run dev
 ```sh
 npm run build
 ```
+
+
+#### The discount setting form is not ready yet. It turned out that this was the most difficult part of this project. I keep working on it.
+
+## Attention! 
+This shopping cart needs back-end support which contained in other my repository:
+
+[Back-end Laravel project](https://github.com/cleargoal/shopping-cart-laravel-back)
