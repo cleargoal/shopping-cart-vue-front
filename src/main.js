@@ -16,8 +16,13 @@ import Badge from "primevue/badge";
 import Dropdown from "primevue/dropdown";
 import DataViewLayoutOptions from "primevue/dataviewlayoutoptions";
 import Rating from "primevue/rating";
+import Column from "primevue/column";
 import Button from "./components/ButtonDefault.vue";
 import DataView from "./components/products/DataView.vue";
+import DataTable from "primevue/datatable";
+import InputText from "primevue/inputtext";
+import Calendar from "primevue/calendar";
+import MultiSelect from "primevue/multiselect";
 
 const app = createApp(App);
 
@@ -30,10 +35,13 @@ app.component('TheToast', Toast);
 app.component('BadgeColored', Badge);
 app.component('DropdownList', Dropdown);
 app.component('DataViewLayoutOptions', DataViewLayoutOptions);
-app.component('RatingMark', Rating)
-app.component('ButtonDefault', Button)
-app.component('DataView', )
-app.component('DataView', DataView)
-
+app.component('RatingMark', Rating);
+app.component('ColumnList', Column);
+app.component('ButtonDefault', Button);
+app.component('DataView', DataView);
+app.component('DataTable', DataTable);
+app.component('InputText', InputText);
+app.component('CalendarDef', Calendar);
+app.component('MultiSelect', MultiSelect);
 
 app.mount("#app");

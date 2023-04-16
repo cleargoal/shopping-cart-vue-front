@@ -19,7 +19,7 @@
                         </div>
                     </template>
 
-                    <Column
+                    <ColumnList
                         field="Title"
                         header="Discount Title"
                         :sortable="true"
@@ -29,8 +29,8 @@
                             <span class="p-column-title">Discount Title</span>
                             <span style="font-weight: bold;">{{ slotProps.data.title }}</span>
                         </template>
-                    </Column>
-                    <Column
+                    </ColumnList>
+                    <ColumnList
                         field="Type"
                         header="Requirements"
                         :sortable="true"
@@ -42,7 +42,7 @@
                                 {{ slotProps.data.requirements }}
                             </span>
                         </template>
-                    </Column>
+                    </ColumnList>
                 </DataTable>
             </div>
         </div>
