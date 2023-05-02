@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 import vue from '@vitejs/plugin-vue';
 import sass from 'sass';
 
@@ -7,11 +7,15 @@ export default defineConfig({
     vue(),
     {
       name: 'sass',
-      renderChunk: (code) => {
-        const { css } = sass.renderSync({ data: code });
-        return { code: css.toString() };
+      // Use `sass` instead of `node-sass`
+      transform: (code, id) => {
+        if (/\.scss$/.test(id)) {
+          const result = sass.renderSync({file: id});
+          return {
+            code: result.css.toString(),
+          };
+        }
       },
-      enforce: 'pre',
     },
   ],
 });
