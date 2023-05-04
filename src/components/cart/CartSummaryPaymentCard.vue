@@ -1,31 +1,33 @@
 <template>
-    <div class="cart-item-card total-flex font-bold">
-        <div class="element-flex discount">
-            <span>Before Discount: </span>
-            <span>${{ beforeDiscount }}</span>
+    <div class="flex flex-column">
+        <div class="total-flex font-bold">
+            <div class="element-flex discount">
+                <span>Before Discount: </span>
+                <span>${{ beforeDiscount }}</span>
+            </div>
+            <div class="element-flex discount">
+                <span>Discount: </span>
+                <span>${{ discountAmount }}</span>
+            </div>
+            <div class="element-flex total">
+                <span>Cart Total: </span>
+                <span>${{ cart_total }}</span>
+            </div>
         </div>
-        <div class="element-flex discount">
-            <span>Discount: </span>
-            <span>${{ discountAmount }}</span>
+        <div class="buttons-flex">
+            <button class="p-button p-component mr-2 mb-2">
+                Pay by Credit Card
+            </button>
+            <button
+                class="p-button p-component p-button-secondary mr-2 mb-2"
+                @click="changeVisibility"
+            >
+                Hide
+            </button>
+            <button class="p-button p-component p-button-danger mr-2 mb-2">
+                Remove Cart
+            </button>
         </div>
-        <div class="element-flex total">
-            <span>Cart Total: </span>
-            <span>${{ cart_total }}</span>
-        </div>
-    </div>
-    <div class="cart-item-card">
-        <button class="p-button p-component mr-2 mb-2">
-            Pay by Credit Card
-        </button>
-        <button
-            class="p-button p-component p-button-secondary mr-2 mb-2"
-            @click="changeVisibility"
-        >
-            Hide
-        </button>
-        <button class="p-button p-component p-button-danger mr-2 mb-2">
-            Remove Cart
-        </button>
     </div>
 </template>
 
@@ -54,6 +56,11 @@
 .total-flex {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+}
+.buttons-flex {
+  display: flex;
   justify-content: space-between;
   padding: 1rem 3rem;
 }
