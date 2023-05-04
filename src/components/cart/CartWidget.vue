@@ -62,10 +62,10 @@
                 let severity;
                 if (newVal > oldVal) {
                     message = "added to";
-                    severity = 'info';
+                    severity = 'success';
                 } else {
                     message = "removed from";
-                    severity = 'warn';
+                    severity = 'info';
                 }
                 this.$toast.add({severity: severity, summary: 'Successful', detail: 'Item ' + message + ' Cart', life: 5000});
             },
