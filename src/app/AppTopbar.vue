@@ -22,13 +22,17 @@
         </button>
 
         <button
-            class="p-link layout-topbar-menu-button layout-topbar-button"
             :class="{ selector: '@next', enterClass: 'hidden', enterActiveClass: 'scalein',
                       leaveToClass: 'hidden', leaveActiveClass: 'fadeout', hideOnOutsideClick: true}"
+            class="p-link layout-topbar-menu-button layout-topbar-button"
+            @click="eventsToggle"
         >
             <i class="pi pi-ellipsis-v" />
         </button>
-        <ul class="layout-topbar-menu hidden lg:flex origin-top">
+        <ul
+            v-if="showEvents"
+            class="layout-topbar-menu lg:flex origin-top"
+        >
             <li>
                 <cart-widget />
             </li>
@@ -60,12 +64,20 @@
     export default {
         components: {CartWidget},
         emits: ['menu-toggle', 'topbar-menu-toggle'],
+        data(){
+            return {
+                showEvents: false,
+            };
+        },
         methods: {
             onMenuToggle(event) {
                 this.$emit('menu-toggle', event);
             },
             onTopbarMenuToggle(event) {
                 this.$emit('topbar-menu-toggle', event);
+            },
+            eventsToggle() {
+                this.showEvents = !this.showEvents;
             },
             topbarImage() {
                 return '/images/whole-europe.svg';
