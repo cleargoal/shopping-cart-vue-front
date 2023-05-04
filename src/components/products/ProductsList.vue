@@ -12,11 +12,11 @@
                     :sort-field="sortField"
                 >
                     <template #header>
-                        <div class="flex justify-content-between">
+                        <div class="flex flex-column md:flex-row justify-content-between">
                             <h2 style="text-transform: capitalize;">
                                 {{ categoryHeader }}
                             </h2>
-                            <div class="grid grid-nogutter col-4">
+                            <div class="flex align-content-center">
                                 <div class="col-6 text-left">
                                     <DropdownList
                                         v-model="sortKey"
