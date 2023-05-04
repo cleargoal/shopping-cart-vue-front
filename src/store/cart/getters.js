@@ -14,6 +14,11 @@ export default {
     cartItemsCount: (state) => {
         return state.userCart.items.length;
     },
+    cartPacksCount: (state) => {
+        let sum = 0;
+        state.userCart.items.map(x => sum += x.quantity);
+        return sum;
+    },
     getAnonymousToken: (state) => {
         return state.anonymousToken;
     },
