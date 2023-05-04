@@ -16,7 +16,7 @@
             {{ itemsCount }}</span>
     </button>
     <div
-        v-show="getCartVisibility"
+        v-show="cartVisibility"
         class="nice-cart"
     >
         <shopping-cart />
@@ -27,7 +27,7 @@
     import ApiService from "../../service/ApiService";
     import {mapActions, mapGetters} from "vuex";
     import ShoppingCart from "./ShoppingCart.vue";
-    import { updateLocalStorage } from  '../../utils/functions';
+    import { updateLocalStorage } from "../../utils/functions.js";
 
     export default {
         name: "CartWidget",
@@ -50,11 +50,13 @@
             },
             cartTitle() {
                 return this.getCartVisibility === false ? 'Open' : 'Close';
-            }
+            },
+            cartVisibility() {
+                return this.getCartVisibility;
+            },
         },
         watch: {
             getCartTotal(newVal, oldVal) {
-                console.log('cart Total old/new', oldVal, newVal);
 
                 let message;
                 let severity;

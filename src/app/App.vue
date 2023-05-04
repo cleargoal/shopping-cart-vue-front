@@ -114,6 +114,11 @@
         mounted() {
             this.fillCategories();
         },
+        beforeUpdate() {
+            if (this.mobileMenuActive)
+                this.addClass(document.body, "body-overflow-hidden");
+            else this.removeClass(document.body, "body-overflow-hidden");
+        },
         methods: {
             onWrapperClick() {
                 if (!this.menuClick) {
@@ -123,7 +128,7 @@
 
                 this.menuClick = false;
             },
-            onMenuToggle() {
+            onMenuToggle(event) {
                 this.menuClick = true;
 
                 if (this.isDesktop()) {
@@ -197,16 +202,8 @@
             },
             ...mapActions("categoryModule", ["setCategoriesList"]),
         },
-        beforeUpdate() {
-            if (this.mobileMenuActive)
-                this.addClass(document.body, "body-overflow-hidden");
-            else this.removeClass(document.body, "body-overflow-hidden");
-        },
     };
 </script>
 <style lang="scss">
-.layout-content-area {
-    display: flex;
-}
-
+@import "../assets/styles/main.scss";
 </style>

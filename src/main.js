@@ -5,7 +5,6 @@ import router from "./router.js";
 import store from "./store/index.js";
 
 import App from "./app/App.vue";
-import './assets/styles/main.scss';
 import 'primeflex/primeflex.css';
 import 'primevue/resources/primevue.min.css';
 

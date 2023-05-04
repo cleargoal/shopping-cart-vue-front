@@ -22,7 +22,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 .layout-footer {
     transition: margin-left $transitionDuration;
     height: 4rem;

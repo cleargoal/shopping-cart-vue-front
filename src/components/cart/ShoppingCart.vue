@@ -33,8 +33,6 @@
     }
 </script>
 <style scoped>
-.open {
-}
 .cart-header {
   width: fit-content;
   margin: 1.5rem auto 0;

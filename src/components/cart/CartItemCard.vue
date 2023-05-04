@@ -52,7 +52,7 @@
     }
 </script>
 
-<style lang="scss">
+<style scoped>
 .cart-item-card {
   width: 90%;
   margin: 1% auto;
