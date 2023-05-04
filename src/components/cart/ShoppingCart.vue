@@ -1,7 +1,7 @@
 <template>
     <div class="open">
         <h1 class="cart-header">
-            Your cart: {{ cartItemsCount }} items
+            Your cart: {{ cartItemsCount }} items, ( {{ cartPacksCount }} packs)
         </h1>
 
         <div class="items">
@@ -25,7 +25,7 @@
             CartItemCard, CartSummaryPaymentCard
         },
         computed: {
-            ...mapGetters('cartModule', ['cartItems', 'cartItemsCount']),
+            ...mapGetters('cartModule', ['cartItems', 'cartItemsCount', 'cartPacksCount']),
             items() {
                 return this.cartItems;
             },
