@@ -14,7 +14,12 @@
                 v-if="icon"
                 :class="iconStyleClass"
             />
-            <span class="p-button-label">{{ label || '&nbsp;' }}</span>
+            <span
+                v-if="pButtonLabel"
+                class="p-button-label"
+            >
+                {{ label }}
+            </span>
             <span
                 v-if="badge"
                 :class="badgeStyleClass"
@@ -95,7 +100,11 @@
             plain: {
                 type: Boolean,
                 default: false
-            }
+            },
+            pButtonLabel: {
+                type: Boolean,
+                default: false
+            },
         },
         computed: {
             buttonClass() {
