@@ -65,7 +65,7 @@
                                         label="Add to Cart"
                                         :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"
                                         class="mb-2"
-                                        @click="addToCart(slotProps.data)"
+                                        @click="addToCar(slotProps.data)"
                                     />
                                     <span :class="'product-badge status-'+slotProps.data.inventoryStatus.toLowerCase()">{{ slotProps.data.inventoryStatus }}</span>
                                 </div>
@@ -151,6 +151,19 @@
                 });
             },
             ...mapActions('cartModule', ['addToCart']),
+            // addToCartMethod(data) {
+            //     let message;
+            //     let severity;
+            //     // if (newVal > oldVal) {
+            //     message = "added to";
+            //     severity = 'success';
+            //     // } else {
+            //     //     message = "removed from";
+            //     //     severity = 'info';
+            //     // }
+            //     this.$toast.add({severity: severity, summary: 'Successful', detail: 'Item ' + message + ' Cart', life: 5000});
+            //     this.addToCart(data);
+            // },
         },
     }
 </script>

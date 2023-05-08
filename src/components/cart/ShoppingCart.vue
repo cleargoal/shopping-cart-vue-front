@@ -1,8 +1,8 @@
 <template>
     <div class="open">
-        <h1 class="cart-header">
+        <div class="flex text-2xl md:text-3xl justify-content-center">
             Your cart: {{ cartItemsCount }} items, ( {{ cartPacksCount }} packs)
-        </h1>
+        </div>
 
         <div class="items">
             <CartItemCard
@@ -34,11 +34,21 @@
 </script>
 <style scoped>
 .cart-header {
-  width: fit-content;
-  margin: 1.5rem auto 0;
+    width: fit-content;
+    margin: 0.5rem auto 0;
 }
+
 .items {
-  max-height: 60vh;
-  overflow-y: scroll;
+    max-height: 83vh;
+    width: 96%;
+    margin: 0 auto;
+    overflow-y: scroll;
+    background-color: #ddd;
+}
+
+@media (max-width: 800px) {
+    .items {
+        max-height: 59vh;
+    }
 }
 </style>

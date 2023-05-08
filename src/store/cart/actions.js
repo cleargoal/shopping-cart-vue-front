@@ -24,5 +24,8 @@ export default {
     },
     setDiscountAmount(context, payload) {
         context.commit('setDiscountAmount', payload);
-    }
+    },
+    emptyCart(context) {
+        context.commit('emptyCart');
+    },
 };

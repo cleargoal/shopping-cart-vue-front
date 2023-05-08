@@ -57,20 +57,21 @@
         },
         watch: {
             getCartTotal(newVal, oldVal) {
+                if (oldVal > 0) {
+                    let message;
+                    let severity;
 
-                let message;
-                let severity;
-                if (newVal > oldVal) {
-                    message = "added to";
-                    severity = 'success';
-                } else {
-                    message = "removed from";
-                    severity = 'info';
-                }
-                this.$toast.add({severity: severity, summary: 'Successful', detail: 'Item ' + message + ' Cart', life: 5000});
-            },
-        },
-        created() {
+                    if (newVal > oldVal) {
+                        message = "added to";
+                        severity = 'success';
+                    } else {
+                        message = "removed from";
+                        severity = 'info';
+                    }
+
+                    this.$toast.add({severity: severity, summary: 'Successful', detail: 'Item ' + message + ' Cart', life: 5000});
+                }            },
+        },        created() {
             this.apiService = new ApiService();
         },
         mounted() {
@@ -131,11 +132,17 @@
   background-color: #eee;
   position: fixed;
   width: 60%;
-  top: 8%;
+  top: 0;
   left: 25%;
-  z-index: 100;
+  z-index: 1000;
   border-radius: 0.6rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: -0.5rem;
   box-shadow: 0 0 5px gray;
+}
+@media (max-width: 800px) {
+    .nice-cart {
+        left: 3%;
+        width: 94%;
+    }
 }
 </style>

@@ -51,4 +51,15 @@ export default {
             updateLocalStorage('userCart', state.userCart);
         }
     },
+    emptyCart(state) {
+        state.userCart = {
+            anonymous_uuid: '',
+            items: [],
+            itemsCount: 0,
+            discountAmount: 0.0,
+            preTotal: 0,
+            total: 0,
+            visible: true,
+        };
+    },
 };

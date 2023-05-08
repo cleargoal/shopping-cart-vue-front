@@ -12,16 +12,20 @@
         </div>
         <div class="text-center">
             <img
-                :src="'images/product/' + data.image"
+                :src="data.image"
                 :alt="data.name"
                 class="w-12 shadow-2 my-3 mx-0"
             >
             <div class="text-2xl font-bold">
                 {{ data.name }}
             </div>
-            <div class="mb-3">
+            <div
+                class="mb-3 "
+                style="min-height: 3rem; max-height: 3rem; overflow-y: hidden; text-overflow: ellipsis;"
+                :title="data.description"
+            >
                 {{ data.description }}
-            </div>
+            </div> ...
             <RatingMark
                 :model-value="data.rating"
                 :readonly="true"
@@ -30,11 +34,14 @@
         </div>
         <div class="flex align-items-center justify-content-between">
             <span class="text-2xl font-semibold">${{ normalPrice(data.price) }}</span>
-            <ButtonDefault
-                icon="pi pi-shopping-cart"
-                :disabled="data.inventoryStatus === 'OUTOFSTOCK'"
-                @click="addToCart(data)"
-            />
+            <span class="flex">
+                <span class="min-w-min line-height-1 max-w-5rem mr-2">Add item or increase quantity</span>
+                <ButtonDefault
+                    icon="pi pi-shopping-cart"
+                    :disabled="data.inventoryStatus === 'OUTOFSTOCK'"
+                    @click="addToCart(data)"
+                />
+            </span>
         </div>
     </div>
 </template>
@@ -67,5 +74,4 @@
 </script>
 
 <style lang="scss" scoped>
-
 </style>
