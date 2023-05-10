@@ -1,7 +1,8 @@
 <template>
     <div class="open">
-        <div class="flex text-2xl md:text-3xl justify-content-center">
-            Your cart: {{ cartItemsCount }} items, ( {{ cartPacksCount }} packs)
+        <div class="flex justify-content-center align-content-center flex-wrap">
+            <span class="text-2xl md:text-3xl pr-2">Your cart: </span>
+            <span class="text-xl md:text-2xl">{{ cartItemsCount }} items, ( {{ cartPacksCount }} packs)</span>
         </div>
 
         <div class="items">
