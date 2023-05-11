@@ -38,8 +38,8 @@ export default {
     setCart(state, cart) {
         state.userCart = cart;
     },
-    changeVisibility(state) {
-        state.userCart.visible = !state.userCart.visible;
+    changeVisibility(state, vis) {
+        state.visible = vis;
     },
     setDiscountAmount(state, amount) {
         state.userCart.discountAmount = amount;
@@ -59,7 +59,7 @@ export default {
             discountAmount: 0.0,
             preTotal: 0,
             total: 0,
-            visible: true,
         };
+        state.visible = true;
     },
 };

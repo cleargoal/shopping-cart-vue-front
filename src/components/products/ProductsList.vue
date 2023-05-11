@@ -2,7 +2,6 @@
     <div class="grid">
         <div class="col-12">
             <div class="card">
-                <TheToast />
                 <DataView
                     :value="dataviewValue"
                     :layout="layout"

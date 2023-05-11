@@ -14,8 +14,8 @@ export default {
                 discountAmount: 0.0,
                 preTotal: 0,
                 total: 0,
-                visible: false,
             },
+            visible: false,
         };
     },
     mutations: cartMutations,

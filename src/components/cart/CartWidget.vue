@@ -2,7 +2,7 @@
     <button
         class="p-link layout-topbar-button"
         :title="cartTitle"
-        @click="changeVisibility"
+        @click="toggleCart"
     >
         <i
             class="pi pi-shopping-cart"
@@ -16,7 +16,7 @@
             {{ itemsCount }}</span>
     </button>
     <div
-        v-show="cartVisibility"
+        v-if="cartVisibility"
         class="nice-cart"
     >
         <shopping-cart />
@@ -25,7 +25,7 @@
 
 <script>
     import ApiService from "../../service/ApiService";
-    import {mapActions, mapGetters} from "vuex";
+    import {mapActions, mapGetters, mapState} from "vuex";
     import ShoppingCart from "./ShoppingCart.vue";
     import { updateLocalStorage } from "../../utils/functions.js";
 
@@ -42,6 +42,9 @@
         computed: {
             ...mapGetters('cartModule', ['getAnonymousToken', 'cartItemsCount', 'getCart', 'getCartVisibility', 'getCartTotal', 'getDiscountAmount', 'cartItems',]),
             ...mapGetters('discountModule', ['getDiscountsList',]),
+            ...mapState({
+                cartVisibility:state =>  state.cartModule.visible,
+            }),
             itemsCount() {
                 return this.getCart ? this.cartItemsCount : 0;
             },
@@ -50,9 +53,6 @@
             },
             cartTitle() {
                 return this.getCartVisibility === false ? 'Open' : 'Close';
-            },
-            cartVisibility() {
-                return this.getCartVisibility;
             },
         },
         watch: {
@@ -70,13 +70,16 @@
                     }
 
                     this.$toast.add({severity: severity, summary: 'Successful', detail: 'Item ' + message + ' Cart', life: 5000});
-                }            },
-        },        created() {
+                }
+            },
+        },
+        created() {
             this.apiService = new ApiService();
         },
         mounted() {
             this.getUserCart();
             this.getDiscounts();
+            console.log('this.cartVisibility', this.cartVisibility);
         },
         methods: {
             async checkTokenForAnonymous() {
@@ -117,6 +120,9 @@
                 const list = await this.apiService.getCalculation();
                 updateLocalStorage('discounts', list);
             },
+            toggleCart() {
+                this.changeVisibility(!this.cartVisibility);
+            },
             ...mapActions('cartModule', ['setAnonymousToken', 'setNewUserCart', 'changeVisibility']),
             ...mapActions('discountModule', ['setDiscountsList']),
         },
@@ -129,10 +135,11 @@
 }
 
 .nice-cart {
-  background-color: #eee;
+  background-color: #f00;
   position: fixed;
   width: 60%;
-  top: 0;
+    height: 12rem;
+  top: 9rem;
   left: 25%;
   z-index: 1000;
   border-radius: 0.6rem;

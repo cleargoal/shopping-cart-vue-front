@@ -19,8 +19,8 @@ export default {
     setNewUserCart(context, payload) {
         context.commit('setCart', payload);
     },
-    changeVisibility(context) {
-        context.commit('changeVisibility');
+    changeVisibility(context, payload) {
+        context.commit('changeVisibility', payload);
     },
     setDiscountAmount(context, payload) {
         context.commit('setDiscountAmount', payload);

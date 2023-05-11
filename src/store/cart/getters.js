@@ -35,6 +35,6 @@ export default {
         return (state.userCart.discountAmount / 100).toFixed(2);
     },
     getCartVisibility: (state) => {
-        return state.userCart.visible;
+        return state.visible;
     },
 };

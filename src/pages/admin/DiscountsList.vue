@@ -2,7 +2,6 @@
     <div class="">
         <div class="col-12">
             <div class="card">
-                <TheToast />
                 <DataTable
                     ref="dt"
                     :value="discounts"
