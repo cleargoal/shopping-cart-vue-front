@@ -20,12 +20,11 @@
                 {{ data.name }}
             </div>
             <div
-                class="mb-3 "
-                style="min-height: 3rem; max-height: 3rem; overflow-y: hidden; text-overflow: ellipsis;"
+                style="max-height: 2.3rem; overflow: hidden; text-overflow: ellipsis;"
                 :title="data.description"
             >
                 {{ data.description }}
-            </div> ...
+            </div>
             <RatingMark
                 :model-value="data.rating"
                 :readonly="true"

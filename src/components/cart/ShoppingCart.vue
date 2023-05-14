@@ -1,6 +1,6 @@
 <template>
-    <div class="open">
-        <div class="flex justify-content-center align-content-center flex-wrap">
+    <div>
+        <div class="flex justify-content-center align-content-center flex-wrap mt-2">
             <span class="text-2xl md:text-3xl pr-2">Your cart: </span>
             <span class="text-xl md:text-2xl">{{ cartItemsCount }} items, ( {{ cartPacksCount }} packs)</span>
         </div>
@@ -40,7 +40,7 @@
 }
 
 .items {
-    max-height: 83vh;
+    max-height: 86vh;
     width: 96%;
     margin: 0 auto;
     overflow-y: scroll;
@@ -49,7 +49,7 @@
 
 @media (max-width: 800px) {
     .items {
-        max-height: 59vh;
+        max-height: 69vh;
     }
 }
 </style>

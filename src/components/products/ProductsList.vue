@@ -1,7 +1,7 @@
 <template>
     <div class="grid">
         <div class="col-12">
-            <div class="card">
+            <div class="card xs:non-padding">
                 <DataView
                     :value="dataviewValue"
                     :layout="layout"
@@ -11,7 +11,7 @@
                     :sort-field="sortField"
                 >
                     <template #header>
-                        <div class="flex flex-column md:flex-row justify-content-between">
+                        <div class="flex justify-content-between">
                             <h2 style="text-transform: capitalize;">
                                 {{ categoryHeader }}
                             </h2>
@@ -25,7 +25,7 @@
                                         @change="onSortChange($event)"
                                     />
                                 </div>
-                                <div class="col-6 text-right">
+                                <div class="col-6 text-right xs:hidden">
                                     <DataViewLayoutOptions v-model="layout" />
                                 </div>
                             </div>
@@ -150,19 +150,15 @@
                 });
             },
             ...mapActions('cartModule', ['addToCart']),
-            // addToCartMethod(data) {
-            //     let message;
-            //     let severity;
-            //     // if (newVal > oldVal) {
-            //     message = "added to";
-            //     severity = 'success';
-            //     // } else {
-            //     //     message = "removed from";
-            //     //     severity = 'info';
-            //     // }
-            //     this.$toast.add({severity: severity, summary: 'Successful', detail: 'Item ' + message + ' Cart', life: 5000});
-            //     this.addToCart(data);
-            // },
         },
     }
 </script>
+<style scoped>
+@media(max-width: 600px) {
+    .xs\:hidden {
+        display: none;
+    }
+    .xs\:non-padding {
+        padding: 0;
+    }
+}</style>

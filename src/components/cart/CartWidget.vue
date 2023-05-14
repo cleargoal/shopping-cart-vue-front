@@ -15,26 +15,17 @@
         >
             {{ itemsCount }}</span>
     </button>
-    <div
-        v-if="cartVisibility"
-        class="nice-cart"
-    >
-        <shopping-cart />
-    </div>
 </template>
 
 <script>
     import ApiService from "../../service/ApiService";
     import {mapActions, mapGetters, mapState} from "vuex";
-    import ShoppingCart from "./ShoppingCart.vue";
     import { updateLocalStorage } from "../../utils/functions.js";
 
     export default {
         name: "CartWidget",
         apiService: null,
-        components: {
-            ShoppingCart,
-        },
+        emits: ['show-cart'],
         data() {
             return {
             }
@@ -79,7 +70,6 @@
         mounted() {
             this.getUserCart();
             this.getDiscounts();
-            console.log('this.cartVisibility', this.cartVisibility);
         },
         methods: {
             async checkTokenForAnonymous() {
@@ -122,6 +112,7 @@
             },
             toggleCart() {
                 this.changeVisibility(!this.cartVisibility);
+                this.$emit('show-cart', true);
             },
             ...mapActions('cartModule', ['setAnonymousToken', 'setNewUserCart', 'changeVisibility']),
             ...mapActions('discountModule', ['setDiscountsList']),
@@ -132,24 +123,5 @@
 <style scoped>
 .cartColor {
   color: #6366f1;
-}
-
-.nice-cart {
-  background-color: #f00;
-  position: fixed;
-  width: 60%;
-    height: 12rem;
-  top: 9rem;
-  left: 25%;
-  z-index: 1000;
-  border-radius: 0.6rem;
-  padding-bottom: -0.5rem;
-  box-shadow: 0 0 5px gray;
-}
-@media (max-width: 800px) {
-    .nice-cart {
-        left: 3%;
-        width: 94%;
-    }
 }
 </style>
