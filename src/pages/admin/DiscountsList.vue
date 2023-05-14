@@ -2,7 +2,6 @@
     <div class="">
         <div class="col-12">
             <div class="card">
-                <TheToast />
                 <DataTable
                     ref="dt"
                     :value="discounts"
@@ -34,12 +33,51 @@
                         field="Type"
                         header="Requirements"
                         :sortable="true"
-                        header-style="width:70%; min-width:10rem;"
+                        header-style="width:20%; min-width:10rem;"
                     >
                         <template #body="slotProps">
                             <span class="p-column-title">Requirements</span>
                             <span>
-                                {{ slotProps.data.requirements }}
+                                {{ slotProps.data.data.requirements }}
+                            </span>
+                        </template>
+                    </ColumnList>
+                    <ColumnList
+                        field="Type"
+                        header="Include"
+                        :sortable="true"
+                        header-style="width:20%; min-width:10rem;"
+                    >
+                        <template #body="slotProps">
+                            <span class="p-column-title">Requirements</span>
+                            <span>
+                                {{ slotProps.data.data.include }}
+                            </span>
+                        </template>
+                    </ColumnList>
+                    <ColumnList
+                        field="Type"
+                        header="Exclude"
+                        :sortable="true"
+                        header-style="width:20%; min-width:10rem;"
+                    >
+                        <template #body="slotProps">
+                            <span class="p-column-title">Requirements</span>
+                            <span>
+                                {{ slotProps.data.data.exclude }}
+                            </span>
+                        </template>
+                    </ColumnList>
+                    <ColumnList
+                        field="Type"
+                        header="Value"
+                        :sortable="true"
+                        header-style="width:20%; min-width:10rem;"
+                    >
+                        <template #body="slotProps">
+                            <span class="p-column-title">Requirements</span>
+                            <span>
+                                {{ slotProps.data.data.value }}
                             </span>
                         </template>
                     </ColumnList>
@@ -59,9 +97,10 @@
         },
         data() {
             return {
-                discounts: null,
+                discounts: [],
                 title: '',
                 requirements: {},
+                totalResults: {},
             }
         },
         apiService: null,
@@ -72,14 +111,9 @@
         methods: {
             setTitle(title) {
                 this.title = title;
-                this.searchMovies();
             },
-            getDiscounts() {
-                this.apiService.getDiscountsListDb().then((discounts) => {
-                    console.log(discounts);
-                    this.discounts = discounts;
-                    this.totalResults = parseInt(discounts.totalResults);
-                });
+            async getDiscounts() {
+                this.discounts = await this.apiService.getDiscountsListDb();
             },
             confirmDeleteMovie(movie) {
                 this.movie = movie;
@@ -110,5 +144,5 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 </style>

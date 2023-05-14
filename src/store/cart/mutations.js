@@ -38,8 +38,8 @@ export default {
     setCart(state, cart) {
         state.userCart = cart;
     },
-    changeVisibility(state) {
-        state.userCart.visible = !state.userCart.visible;
+    changeVisibility(state, vis) {
+        state.visible = vis;
     },
     setDiscountAmount(state, amount) {
         state.userCart.discountAmount = amount;
@@ -50,5 +50,16 @@ export default {
             state.userCart.total = state.userCart.preTotal - state.userCart.discountAmount;
             updateLocalStorage('userCart', state.userCart);
         }
+    },
+    emptyCart(state) {
+        state.userCart = {
+            anonymous_uuid: '',
+            items: [],
+            itemsCount: 0,
+            discountAmount: 0.0,
+            preTotal: 0,
+            total: 0,
+        };
+        state.visible = true;
     },
 };

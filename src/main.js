@@ -5,9 +5,9 @@ import router from "./router.js";
 import store from "./store/index.js";
 
 import App from "./app/App.vue";
-import './assets/styles/main.scss';
 import 'primeflex/primeflex.css';
 import 'primevue/resources/primevue.min.css';
+import StyleClass from 'primevue/styleclass';
 
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
@@ -43,5 +43,7 @@ app.component('DataTable', DataTable);
 app.component('InputText', InputText);
 app.component('CalendarDef', Calendar);
 app.component('MultiSelect', MultiSelect);
+
+app.directive('styleclass', StyleClass);
 
 app.mount("#app");

@@ -14,6 +14,11 @@ export default {
     cartItemsCount: (state) => {
         return state.userCart.items.length;
     },
+    cartPacksCount: (state) => {
+        let sum = 0;
+        state.userCart.items.map(x => sum += x.quantity);
+        return sum;
+    },
     getAnonymousToken: (state) => {
         return state.anonymousToken;
     },
@@ -30,6 +35,6 @@ export default {
         return (state.userCart.discountAmount / 100).toFixed(2);
     },
     getCartVisibility: (state) => {
-        return state.userCart.visible;
+        return state.visible;
     },
 };

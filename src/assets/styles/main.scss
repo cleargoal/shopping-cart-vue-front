@@ -1,9 +1,9 @@
-@import "primevue/resources/themes/lara-light-teal/theme.css";
+@import "/node_modules/primevue/resources/themes/lara-light-teal/theme.css";
+@import "/node_modules/primeicons/primeicons.css";
 //@import "primevue/resources/primevue.min.css";
-@import "primeicons/primeicons.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+//@tailwind base;
+//@tailwind components;
+//@tailwind utilities;
 
 @mixin focused() {
   outline: 0 none;
@@ -480,47 +480,6 @@ a {
   }
 }
 
-@media (max-width: 991px) {
-  .layout-wrapper {
-    .layout-main-container {
-      margin-left: 0;
-      padding-left: 2rem;
-    }
-
-    .layout-sidebar {
-      transform: translateX(-100%);
-      left: 0;
-      top: 0;
-      height: 100vh;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
-    .layout-mask {
-      z-index: 998;
-      background-color: var(--maskbg);
-
-      &.layout-mask-enter-from,
-      &.layout-mask-leave-to {
-        background-color: transparent;
-      }
-    }
-
-    &.layout-mobile-sidebar-active {
-      .layout-sidebar {
-        transform: translateX(0);
-      }
-
-      .layout-mask {
-        display: block;
-      }
-    }
-  }
-
-  .body-overflow-hidden {
-    overflow: hidden;
-  }
-}
 
 
 .preloader {
@@ -660,6 +619,45 @@ a {
 }
 
 @media (max-width: 991px) {
+  .layout-wrapper {
+    .layout-main-container {
+      margin-left: 0;
+      padding-left: 2rem;
+    }
+
+    .layout-sidebar {
+      transform: translateX(-100%);
+      left: 0;
+      top: 0;
+      height: 100vh;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .layout-mask {
+      z-index: 998;
+      background-color: var(--maskbg);
+
+      &.layout-mask-enter-from,
+      &.layout-mask-leave-to {
+        background-color: transparent;
+      }
+    }
+
+    &.layout-mobile-sidebar-active {
+      .layout-sidebar {
+        transform: translateX(0);
+      }
+
+      .layout-mask {
+        display: block;
+      }
+    }
+  }
+
+  .body-overflow-hidden {
+    overflow: hidden;
+  }
   .layout-topbar {
     justify-content: space-between;
 
@@ -710,6 +708,30 @@ a {
           display: block;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .layout-wrapper .layout-main-container {
+    padding: 0;
+    margin-top: 3rem;
+  }
+  .layout-main .grid, .layout-main .grid .col-12 {
+    margin: 0;
+  }
+  .layout-topbar {
+    padding: 0 1rem 0 0;
+    height: 4rem;
+    .layout-topbar-menu-button {
+      display: inline-flex;
+      padding: 0;
+    }
+    .layout-topbar-logo {
+      width: fit-content;
+    }
+    .layout-menu-button {
+      margin-left: 1rem;
     }
   }
 }

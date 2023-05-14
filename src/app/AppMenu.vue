@@ -39,7 +39,7 @@
     };
 </script>
 
-<style>
+<style scoped>
 .layout-sidebar {
     position: sticky;
     width: 300px;
@@ -53,7 +53,7 @@
     background-color: var(--surface-overlay);
     border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: 0px 3px 5px rgba(0,0,0,.02), 0px 0px 2px rgba(0,0,0,.05), 0px 1px 4px rgba(0,0,0,.08)
+    box-shadow: 0 3px 5px rgba(0,0,0,.02), 0 0 2px rgba(0,0,0,.05), 0 1px 4px rgba(0,0,0,.08)
 }
 
 .layout-menu {
@@ -84,10 +84,9 @@
             display: flex;
             align-items: center;
             color:var(--text-color);
-            transition: color $transitionDuration;
+            transition: color $transitionDuration, background-color .15s;;
             border-radius: $borderRadius;
             padding: .75rem 1rem;
-            transition: background-color .15s;
 
             span {
                 margin-left: 0.5rem;

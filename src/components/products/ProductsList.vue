@@ -1,8 +1,7 @@
 <template>
     <div class="grid">
         <div class="col-12">
-            <div class="card">
-                <TheToast />
+            <div class="card xs:non-padding">
                 <DataView
                     :value="dataviewValue"
                     :layout="layout"
@@ -16,7 +15,7 @@
                             <h2 style="text-transform: capitalize;">
                                 {{ categoryHeader }}
                             </h2>
-                            <div class="grid grid-nogutter col-4">
+                            <div class="flex align-content-center">
                                 <div class="col-6 text-left">
                                     <DropdownList
                                         v-model="sortKey"
@@ -26,7 +25,7 @@
                                         @change="onSortChange($event)"
                                     />
                                 </div>
-                                <div class="col-6 text-right">
+                                <div class="col-6 text-right xs:hidden">
                                     <DataViewLayoutOptions v-model="layout" />
                                 </div>
                             </div>
@@ -65,7 +64,7 @@
                                         label="Add to Cart"
                                         :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"
                                         class="mb-2"
-                                        @click="addToCart(slotProps.data)"
+                                        @click="addToCar(slotProps.data)"
                                     />
                                     <span :class="'product-badge status-'+slotProps.data.inventoryStatus.toLowerCase()">{{ slotProps.data.inventoryStatus }}</span>
                                 </div>
@@ -154,21 +153,12 @@
         },
     }
 </script>
-
-<style scoped lang="scss">
-.product-item {
-    .product-item-content {
-        border: 1px solid var(--surface-d);
-        border-radius: 3px;
-        margin: 0.3rem;
-        text-align: center;
-        padding: 2rem 0;
+<style scoped>
+@media(max-width: 600px) {
+    .xs\:hidden {
+        display: none;
     }
-
-    .product-image {
-        width: 50%;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    .xs\:non-padding {
+        padding: 0;
     }
-}
-
-</style>
+}</style>

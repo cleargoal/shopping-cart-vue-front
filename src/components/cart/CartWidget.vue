@@ -2,7 +2,7 @@
     <button
         class="p-link layout-topbar-button"
         :title="cartTitle"
-        @click="changeVisibility"
+        @click="toggleCart"
     >
         <i
             class="pi pi-shopping-cart"
@@ -15,26 +15,17 @@
         >
             {{ itemsCount }}</span>
     </button>
-    <div
-        v-show="getCartVisibility"
-        class="nice-cart"
-    >
-        <shopping-cart />
-    </div>
 </template>
 
 <script>
     import ApiService from "../../service/ApiService";
-    import {mapActions, mapGetters} from "vuex";
-    import ShoppingCart from "./ShoppingCart.vue";
-    import { updateLocalStorage } from  '../../utils/functions';
+    import {mapActions, mapGetters, mapState} from "vuex";
+    import { updateLocalStorage } from "../../utils/functions.js";
 
     export default {
         name: "CartWidget",
         apiService: null,
-        components: {
-            ShoppingCart,
-        },
+        emits: ['show-cart'],
         data() {
             return {
             }
@@ -42,6 +33,9 @@
         computed: {
             ...mapGetters('cartModule', ['getAnonymousToken', 'cartItemsCount', 'getCart', 'getCartVisibility', 'getCartTotal', 'getDiscountAmount', 'cartItems',]),
             ...mapGetters('discountModule', ['getDiscountsList',]),
+            ...mapState({
+                cartVisibility:state =>  state.cartModule.visible,
+            }),
             itemsCount() {
                 return this.getCart ? this.cartItemsCount : 0;
             },
@@ -50,22 +44,24 @@
             },
             cartTitle() {
                 return this.getCartVisibility === false ? 'Open' : 'Close';
-            }
+            },
         },
         watch: {
             getCartTotal(newVal, oldVal) {
-                console.log('cart Total old/new', oldVal, newVal);
+                if (oldVal > 0) {
+                    let message;
+                    let severity;
 
-                let message;
-                let severity;
-                if (newVal > oldVal) {
-                    message = "added to";
-                    severity = 'info';
-                } else {
-                    message = "removed from";
-                    severity = 'warn';
+                    if (newVal > oldVal) {
+                        message = "added to";
+                        severity = 'success';
+                    } else {
+                        message = "removed from";
+                        severity = 'info';
+                    }
+
+                    this.$toast.add({severity: severity, summary: 'Successful', detail: 'Item ' + message + ' Cart', life: 5000});
                 }
-                this.$toast.add({severity: severity, summary: 'Successful', detail: 'Item ' + message + ' Cart', life: 5000});
             },
         },
         created() {
@@ -114,6 +110,10 @@
                 const list = await this.apiService.getCalculation();
                 updateLocalStorage('discounts', list);
             },
+            toggleCart() {
+                this.changeVisibility(!this.cartVisibility);
+                this.$emit('show-cart', true);
+            },
             ...mapActions('cartModule', ['setAnonymousToken', 'setNewUserCart', 'changeVisibility']),
             ...mapActions('discountModule', ['setDiscountsList']),
         },
@@ -123,17 +123,5 @@
 <style scoped>
 .cartColor {
   color: #6366f1;
-}
-
-.nice-cart {
-  background-color: #eee;
-  position: fixed;
-  width: 60%;
-  top: 8%;
-  left: 25%;
-  z-index: 100;
-  border-radius: 0.6rem;
-  padding-bottom: 1.5rem;
-  box-shadow: 0 0 5px gray;
 }
 </style>
