@@ -5,12 +5,14 @@ import rootGetters from "./getters";
 import shoppingCart from "./cart/index";
 import categories from "./categories";
 import discounts from "./discounts";
+import commonStore from './common';
 
 const store = createStore({
     modules: {
         cartModule: shoppingCart,
         categoryModule: categories,
         discountModule: discounts,
+        commonModule: commonStore,
     },
     state() {
         return {
