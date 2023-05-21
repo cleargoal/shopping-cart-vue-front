@@ -144,11 +144,10 @@
                 }
             },
             async getProductsData() {
-                const prod = await this.ApiService.getCategoryProducts(this.$route.query.category); // .then((prod) => {
+                const prod = await this.ApiService.getCategoryProducts(this.$route.query.category);
                 this.categoryHeader = this.$route.query.category;
                 this.dataviewValue = prod;
                 await this.setHidePreloader();
-                // });
             },
             ...mapActions('cartModule', ['addToCart']),
             ...mapActions('commonModule', ['setHidePreloader']),
