@@ -45,7 +45,7 @@ const routes = [
     {
         path: '/access',
         name: 'access',
-        component: () => import('./pages/Access.vue')
+        component: () => import('./pages/WelcomePage.vue')
     },
 ];
 
