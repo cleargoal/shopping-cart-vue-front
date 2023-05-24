@@ -49,7 +49,7 @@
     import { mapActions } from 'vuex';
 
     export default {
-        name: "ProductCard",
+        name: "ProductCardGrid",
         props: {
             data:
                 {
