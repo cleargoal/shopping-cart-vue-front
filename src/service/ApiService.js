@@ -8,22 +8,18 @@ if (process.env.NODE_ENV === 'development') {
 
 export default class ApiService {
     getAnonymousTokenFromDb() {
-        // let apiUrl = inject('apiUrl');
         return fetch(apiUrl + '/new-anonymous').then(res => res.json());
     }
 
     getUserCardFromDb(token) {
-        // let apiUrl = inject('apiUrl');
         return postData(apiUrl + '/user-cart/', {uuid:token});
     }
 
     getCategoriesList() {
-        // let apiUrl = inject('apiUrl');
         return fetch(apiUrl + '/categories/').then(res => res.json());
     }
 
     getCategoryProducts(alias) {
-        // let apiUrl = inject('apiUrl');
         return fetch(apiUrl + '/products-by-category/' + alias).then(res => res.json());
     }
 
