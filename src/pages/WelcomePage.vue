@@ -20,7 +20,7 @@
                     class="h-full w-full m-0 py-7 px-4"
                     style="border-radius:53px; background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));"
                 >
-                    <div class="grid flex flex-column align-items-center">
+                    <div class="flex flex-column align-items-center">
                         <div
                             class="flex justify-content-center align-items-center bg-orange-500 border-circle"
                             style="width:3.2rem; height:3.2rem;"
@@ -55,3 +55,6 @@
         </div>
     </div>
 </template>
+<script>
+
+</script>
