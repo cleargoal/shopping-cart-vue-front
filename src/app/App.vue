@@ -198,7 +198,6 @@
         },
         watch: {
             $route() {
-                this.setShowPreloader();
                 this.menuActive = false;
                 if (this.$toast) {
                     this.$toast.removeAllGroups();

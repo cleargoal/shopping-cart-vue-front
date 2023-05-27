@@ -19,11 +19,28 @@
             <div class="text-2xl font-bold">
                 {{ data.name }}
             </div>
+            <div class="flex">
+                <div
+                    class="mb-3 overflow-hidden"
+                    style="max-height: 1.3rem;"
+                >
+                    {{ data.description }}
+                </div>
+                <span
+                    class="pi pi-chevron-circle-down text-blue-400 text-xl cursor-pointer"
+                    @click="toggleDescription"
+                />
+            </div>
             <div
-                style="max-height: 2.3rem; overflow: hidden; text-overflow: ellipsis;"
-                :title="data.description"
+                class="relative"
+                style="margin-top: -0.8rem;"
             >
-                {{ data.description }}
+                <span
+                    v-show="showDescr"
+                    class="absolute bg-orange-50 p-2 w-full md:w-24rem border-round border-400 border-1 z-5 left-0"
+                >
+                    {{ data.description }}
+                </span>
             </div>
             <RatingMark
                 :model-value="data.rating"
@@ -32,7 +49,7 @@
             />
         </div>
         <div class="flex align-items-center justify-content-between">
-            <span class="text-2xl font-semibold">${{ normalPrice(data.price) }}</span>
+            <span class="text-2xl font-semibold">${{ normalizePrice(data.price) }}</span>
             <span class="flex">
                 <span class="min-w-min line-height-1 max-w-5rem mr-2">Add item or increase quantity</span>
                 <ButtonDefault
@@ -47,6 +64,7 @@
 
 <script>
     import { mapActions } from 'vuex';
+    import {normalPrice} from "../../utils/functions";
 
     export default {
         name: "ProductCardGrid",
@@ -57,17 +75,25 @@
                     default: null,
                 },
         },
+        data() {
+            return {
+                showDescr: false,
+                svgSize: 'height: 10px',
+            };
+        },
         computed: {
             bColor() {
                 return this.data.inventoryStatus ? 'status-' + this.data.inventoryStatus.toLowerCase() : '';
             },
         },
         methods: {
-            normalPrice(val) {
-                return (val/100).toFixed(2);
+            normalizePrice(value) {
+                return normalPrice(value);
             },
             ...mapActions('cartModule', ['addToCart']),
-
+            toggleDescription() {
+                this.showDescr = !this.showDescr;
+            },
         }
     }
 </script>
