@@ -92,9 +92,6 @@
             this.getProductsData();
         },
         methods: {
-            normalPrice(val) {
-                return (val/100).toFixed(2);
-            },
             onSortChange(event){
                 const value = event.value.value;
                 const sortValue = event.value;
