@@ -316,7 +316,7 @@ main {
 }
 .ip__worm1,
 .ip__worm2 {
-  animation: worm1 0.5s linear infinite;
+  animation: worm1 1s linear infinite;
 }
 .ip__worm2 {
   animation-name: worm2;
