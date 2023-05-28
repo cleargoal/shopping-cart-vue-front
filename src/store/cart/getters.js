@@ -29,7 +29,7 @@ export default {
         return (state.userCart.total / 100).toFixed(2);
     },
     getCartPreTotal: (state) => {
-        return (state.userCart.preTotal / 100).toFixed(2);
+        return (state.userCart.preTotal / 100);
     },
     getDiscountAmount: (state) => {
         return (state.userCart.discountAmount / 100).toFixed(2);
