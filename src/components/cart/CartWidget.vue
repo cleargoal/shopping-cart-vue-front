@@ -31,7 +31,8 @@
             }
         },
         computed: {
-            ...mapGetters('cartModule', ['getAnonymousToken', 'cartItemsCount', 'getCart', 'getCartVisibility', 'getCartTotal', 'getDiscountAmount', 'cartItems',]),
+            ...mapGetters('cartModule', ['getAnonymousToken', 'cartItemsCount', 'getCart', 'getCartVisibility', 'getCartTotal', 'getCartPreTotal', 'getDiscountAmount',
+                                         'cartItems',]),
             ...mapGetters('discountModule', ['getDiscountsList',]),
             ...mapState({
                 cartVisibility:state =>  state.cartModule.visible,
@@ -47,21 +48,21 @@
             },
         },
         watch: {
-            getCartTotal(newVal, oldVal) {
-                if (oldVal > 0) {
-                    let message;
-                    let severity;
+            getCartPreTotal(newVal, oldVal) {
+                let message;
+                let severity;
 
-                    if (newVal > oldVal) {
-                        message = "added to";
-                        severity = 'success';
-                    } else {
-                        message = "removed from";
-                        severity = 'info';
-                    }
-
-                    this.$toast.add({severity: severity, summary: 'Successful', detail: 'Item ' + message + ' Cart', life: 5000});
+                if (newVal > oldVal) {
+                    message = "added to";
+                    severity = 'success';
+                } else {
+                    message = "removed from";
+                    severity = 'info';
                 }
+
+                this.$toast.add({severity: severity, summary: 'Successful', detail: 'Item ' + message + ' Cart', life: 5000});
+                newVal = 0;
+                oldVal = 0;
             },
         },
         created() {
