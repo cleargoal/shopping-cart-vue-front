@@ -9,9 +9,7 @@ export default {
     removeFromCart(context, payload) {
         const dList = context.rootGetters['discountModule/getDiscountsList'];
         context.commit('removeFromCart', payload);
-        if (dList.length > 0) {
-            context.commit('calculateDiscountAmount', dList);
-        }
+        context.commit('calculateDiscountAmount', dList);
     },
     setAnonymousToken(context, payload) {
         context.commit('setAnonymousToken', payload);

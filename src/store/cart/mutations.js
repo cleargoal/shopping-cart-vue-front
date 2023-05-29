@@ -45,11 +45,9 @@ export default {
         state.userCart.discountAmount = amount;
     },
     calculateDiscountAmount(state, discounts) {
-        if (state.userCart.items.length > 0) {
-            state.userCart.discountAmount = calc.methods.calculation(discounts, state.userCart.items, state.userCart.preTotal);
-            state.userCart.total = state.userCart.preTotal - state.userCart.discountAmount;
-            updateLocalStorage('userCart', state.userCart);
-        }
+        state.userCart.discountAmount = calc.methods.calculation(discounts, state.userCart.items, state.userCart.preTotal);
+        state.userCart.total = state.userCart.preTotal - state.userCart.discountAmount;
+        updateLocalStorage('userCart', state.userCart);
     },
     emptyCart(state) {
         state.userCart = {
