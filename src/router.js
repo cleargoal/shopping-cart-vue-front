@@ -1,5 +1,4 @@
 import {createRouter, createWebHistory} from 'vue-router';
-import App from './app/App.vue';
 
 const routes = [
     {
@@ -16,16 +15,6 @@ const routes = [
         path: "/products",
         name: "products",
         component: () => import('./components/products/ProductsList.vue'),
-    },
-    {
-        path: "/set-discount",
-        name: "set-discount",
-        component: () => import('./pages/admin/AdminSetDiscount.vue'),
-    },
-    {
-        path: "/discounts",
-        name: "discounts",
-        component: () => import('./pages/admin/DiscountsList.vue'),
     },
     {
         path: '/login',
@@ -46,6 +35,16 @@ const routes = [
         path: '/access',
         name: 'access',
         component: () => import('./pages/WelcomePage.vue')
+    },
+    {
+        path: "/admin/set-discount",
+        name: "set-discount",
+        component: () => import('./pages/admin/AdminSetDiscount.vue'),
+    },
+    {
+        path: "/admin/discounts",
+        name: "discounts",
+        component: () => import('./pages/admin/DiscountsList.vue'),
     },
 ];
 
