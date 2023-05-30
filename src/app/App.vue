@@ -156,16 +156,19 @@
                     },
                     {
                         label: "Admin Settings",
+                        group_key: 'admin',
                         items: [
                             {
                                 label: "Set Discount Form",
                                 icon: "pi pi-fw pi-id-card",
-                                to: "/set-discount",
+                                group_key: 'admin',
+                                to: "/admin/set-discount",
                             },
                             {
                                 label: "Discounts List",
                                 icon: "pi pi-fw pi-list",
-                                to: "/discounts",
+                                group_key: 'admin',
+                                to: "/admin/discounts",
                             },
                         ],
                     },
