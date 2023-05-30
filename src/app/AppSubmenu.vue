@@ -11,10 +11,13 @@
             >
                 <template v-if="root">
                     <div
+                        v-show="$route.path.substring(1).split('/')[0] === 'admin' || ($route.path.substring(1).split('/')[0] !== '!admin' && item.group_key !== 'admin')"
                         class="layout-menuitem-root-text"
                         aria-label="item.label"
                     >
-                        {{ item.label }}
+                        <span>
+                            {{ item.label }}
+                        </span>
                     </div>
                     <app-submenu
                         :items="visible(item) && item.items"
@@ -24,6 +27,7 @@
                 <template v-else>
                     <router-link
                         v-if="item.to"
+                        v-show="$route.path.substring(1).split('/')[0] === 'admin' || ($route.path.substring(1).split('/')[0] !== '!admin' && item.group_key !== 'admin')"
                         :to="item.to"
                         :class="[item.class, 'p-ripple', {'p-disabled': item.disabled}]"
                         :style="item.style"
@@ -33,8 +37,12 @@
                         role="menuitem"
                         @click="onMenuItemClick($event,item,i)"
                     >
-                        <i :class="item.icon" />
-                        <span style="font-size: large;">{{ item.label }}</span>
+                        <i
+                            :class="item.icon"
+                        />
+                        <span
+                            style="font-size: large;"
+                        >{{ item.label }}</span>
                         <i
                             v-if="item.items"
                             class="pi pi-fw pi-angle-down menuitem-toggle-icon"
@@ -105,6 +113,7 @@
         },
         methods: {
             onMenuItemClick(event, item, index) {
+                console.log('item, index, route: ', item, index, this.$route.path.substring(1).split('/')[0]);
                 if (item.disabled) {
                     event.preventDefault();
                     return;
