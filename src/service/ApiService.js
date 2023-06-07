@@ -3,7 +3,7 @@ let apiUrl = '';
 if (process.env.NODE_ENV === 'development') {
     apiUrl = 'http://localhost:8010/api';
 } else {
-    apiUrl = 'https://shopping-back.segment.best/api';
+    apiUrl = 'https://demo-shop-back.segment.best/api';
 }
 
 export default class ApiService {
