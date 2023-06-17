@@ -66,6 +66,7 @@
                 sortKey: null,
                 sortOrder: null,
                 sortField: null,
+                category: null,
                 sortOptions: [
                     {label: 'Price: High to Low', value: '!price'},
                     {label: 'Price: Low to High', value: 'price'},
@@ -108,8 +109,9 @@
                 }
             },
             async getProductsData() {
-                const prod = await this.ApiService.getCategoryProducts(this.$route.query.category);
-                this.categoryHeader = this.$route.query.category;
+                this.category = this.$route.params.category;
+                const prod = await this.ApiService.getCategoryProducts(this.category);
+                this.categoryHeader = this.$route.label;
                 this.dataviewValue = prod;
                 await this.setHidePreloader();
             },

@@ -113,7 +113,6 @@
         },
         methods: {
             onMenuItemClick(event, item, index) {
-                console.log('item, index, route: ', item, index, this.$route.path.substring(1).split('/')[0]);
                 if (item.disabled) {
                     event.preventDefault();
                     return;

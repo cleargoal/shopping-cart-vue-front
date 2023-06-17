@@ -20,7 +20,7 @@ export default class ApiService {
     }
 
     getCategoryProducts(alias) {
-        return fetch(apiUrl + '/products-by-category/' + alias).then(res => res.json());
+        return fetch(apiUrl + '/products?category=' + alias).then(res => res.json());
     }
 
     getDiscountsListDb() {
