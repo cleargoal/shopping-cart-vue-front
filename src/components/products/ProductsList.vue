@@ -7,8 +7,10 @@
                     :layout="layout"
                     :paginator="true"
                     :rows="9"
+                    :first="catFirstPage"
                     :sort-order="sortOrder"
                     :sort-field="sortField"
+                    @update:first="getPageEmit"
                 >
                     <template #header>
                         <div class="flex justify-content-between">
@@ -76,7 +78,8 @@
                     {label: 'Stock: Out of stock first', value: '!inventoryStatus'},
                     {label: 'Name: A - Z', value: 'name'},
                     {label: 'Name: Z - A', value: '!name'},
-                ]
+                ],
+                catFirstPage: 0,
             }
         },
         ApiService: null,
@@ -84,6 +87,7 @@
         },
         watch: {
             $route() {
+                this.setShowPreloader();
                 this.getProductsData();
             },
         },
@@ -111,12 +115,16 @@
             async getProductsData() {
                 this.category = this.$route.params.category;
                 const prod = await this.ApiService.getCategoryProducts(this.category);
-                this.categoryHeader = this.$route.label;
+                this.categoryHeader = this.$route.name;
                 this.dataviewValue = prod;
+                this.catFirstPage = 0;
                 await this.setHidePreloader();
             },
             ...mapActions('cartModule', ['addToCart']),
             ...mapActions('commonModule', ['setHidePreloader', 'setShowPreloader']),
+            getPageEmit(event) {
+                this.catFirstPage = event;
+            }
         },
     }
 </script>
