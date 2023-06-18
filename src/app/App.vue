@@ -186,7 +186,10 @@
                 return true;
             },
             async getCategories() {
-                if (!window.localStorage.getItem("categories")) {
+                let today = new Date().toDateString();
+                let pastDay = new Date(window.localStorage.getItem("catDate")).toDateString();
+                let categories = window.localStorage.getItem("categories");
+                if (!categories || today !== pastDay) {
                     await this.getCategoriesFromDb();
                 }
                 await this.setCategoriesList(
@@ -198,6 +201,7 @@
                     .getCategoriesList(this.$store.categories)
                     .then((list) => {
                         window.localStorage.setItem("categories", JSON.stringify(list));
+                        window.localStorage.setItem("catDate", JSON.stringify(new Date()));
                     });
             },
             async fillCategories() {
